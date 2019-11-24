@@ -32,27 +32,28 @@ namespace Refactoring.Repository
            Dogs.Add(dog);
         } 
 
-        public string CountHowMuchYouMustSpendMoneyToBeHappy( decimal firsValue, decimal secondValue, 
-            decimal thirdValue, string title, string subtitle, string author) {
-            string toBeReturned = "";
-            decimal amount = CountDecimalValue(1, 2, 3,
-                firsValue, secondValue, thirdValue);
-
-            return toBeReturned + " " + amount;
+        public decimal CountHowMuchYouMustSpendMoneyToBeHappy( decimal firsValue, decimal secondValue, decimal thirdValue) {
+            decimal amount = CountDecimalValueWithTitle(1, 2, 3,firsValue, secondValue, thirdValue);
+            return amount;
         }
 
-        public string CountHowMuchYouMustSpendMoneyToBeFine(decimal firsValue, decimal secondValue,
-            decimal thirdValue, string title, string subtitle, string author)
+        public decimal CountHowMuchYouMustSpendMoneyToBeFine(decimal firsValue, decimal secondValue,decimal thirdValue)
+        {
+            decimal amount = CountDecimalValueWithTitle(3, 2, 1,firsValue, secondValue, thirdValue);
+            return amount;
+        }
+
+        public string getTitle(string title, string subtitle, string author)
         {
             string toBeReturned = "";
-            decimal amount = CountDecimalValue(3, 2, 1,
-                firsValue, secondValue, thirdValue);
-
-            return toBeReturned + " "+ amount;
+            string header = "";
+            string extendedTitle = title + " " + subtitle;
+            header = extendedTitle + " " + author;
+            toBeReturned += header;
+            return toBeReturned;
         }
 
-        public decimal CountDecimalValue(decimal a, decimal b, decimal c, decimal firsValue, decimal secondValue,
-            decimal thirdValue)
+        public decimal CountDecimalValueWithTitle(decimal a, decimal b, decimal c, decimal firsValue, decimal secondValue, decimal thirdValue)
         {
             decimal amount = 0;
             if (firsValue >= 0)
