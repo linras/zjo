@@ -33,97 +33,63 @@ namespace Refactoring.Repository
         } 
 
         public string CountHowMuchYouMustSpendMoneyToBeHappy( decimal firsValue, decimal secondValue, 
-            decimal thirdValue, decimal forthValue, string title, string subtitle, string author) {
+            decimal thirdValue, string title, string subtitle, string author) {
             string toBeReturned = "";
-            decimal amount = 0;
-            if (firsValue >= 0)
-            {
-                if (secondValue >= 0)
-                {
-                    if(thirdValue >= 0)
-                    {
-                        if(forthValue >= 0)
-                        {
-                            string fullTitle = title + " " + subtitle;
-                            string fullHeader = fullTitle + " " + author;
-                            if (firsValue > secondValue && firsValue > thirdValue)
-                            {
-                                if(secondValue > thirdValue)
-                                {
-                                    amount = 3 * firsValue + 2 * secondValue + thirdValue;
-                                }
-                                else amount = 3 * firsValue + 2 * thirdValue +  secondValue;
+            decimal amount = CountDecimalValue(1, 2, 3,
+                firsValue, secondValue, thirdValue);
 
-                            }
-                            if (secondValue > thirdValue && secondValue > firsValue)
-                            {
-                                if (thirdValue > firsValue)
-                                {
-                                    amount = 3 * secondValue + 2 * thirdValue + firsValue;
-                                }
-                                else amount = 3 * secondValue + 2 * firsValue + thirdValue;
-                            }
-                            if (thirdValue > firsValue && thirdValue > secondValue)
-                            {
-                                if (firsValue > secondValue)
-                                {
-                                    amount = 3 * thirdValue + 2 * firsValue + secondValue;
-                                }
-                                else amount = 3 * thirdValue + 2 * secondValue + firsValue;
-                            }
-                        }
-                    }
-                }
-            }
-            return toBeReturned + " "+ amount;
+            return toBeReturned + " " + amount;
         }
 
         public string CountHowMuchYouMustSpendMoneyToBeFine(decimal firsValue, decimal secondValue,
-            decimal thirdValue, decimal forthValue, string title, string subtitle, string author)
+            decimal thirdValue, string title, string subtitle, string author)
         {
             string toBeReturned = "";
+            decimal amount = CountDecimalValue(3, 2, 1,
+                firsValue, secondValue, thirdValue);
+
+            return toBeReturned + " "+ amount;
+        }
+
+        public decimal CountDecimalValue(decimal a, decimal b, decimal c, decimal firsValue, decimal secondValue,
+            decimal thirdValue)
+        {
             decimal amount = 0;
             if (firsValue >= 0)
             {
                 if (secondValue >= 0)
                 {
-                    if(thirdValue >= 0)
+                    if (thirdValue >= 0)
                     {
-                        if(forthValue >= 0)
+                        if (firsValue > secondValue && firsValue > thirdValue)
                         {
-                            string fullTitle = title + " " + subtitle;
-                            string fullHeader = fullTitle + " " + author;
-                            toBeReturned += fullHeader;
-                            if (firsValue > secondValue && firsValue > thirdValue)
+                            if (secondValue > thirdValue)
                             {
-                                if(secondValue > thirdValue)
-                                {
-                                    amount = 3 * thirdValue + 2 * secondValue + firsValue;
-                                }
-                                else amount = 3 * secondValue + 2 * thirdValue + firsValue;
+                                amount = a * thirdValue + b * secondValue + c * firsValue;
+                            }
+                            else amount = a * secondValue + b * thirdValue + c * firsValue;
 
-                            }
-                            if (secondValue > thirdValue && secondValue > firsValue)
+                        }
+                        if (secondValue > thirdValue && secondValue > firsValue)
+                        {
+                            if (thirdValue > firsValue)
                             {
-                                if (thirdValue > firsValue)
-                                {
-                                    amount = 3 * firsValue + 2 * thirdValue + secondValue;
-                                }
-                                else amount = 3 * thirdValue + 2 * firsValue + secondValue;
+                                amount = a * firsValue + b * thirdValue + c * secondValue;
                             }
-                            if (thirdValue > firsValue && thirdValue > secondValue)
+                            else amount = a * thirdValue + b * firsValue + c * secondValue;
+                        }
+                        if (thirdValue > firsValue && thirdValue > secondValue)
+                        {
+                            if (firsValue > secondValue)
                             {
-                                if (firsValue > secondValue)
-                                {
-                                    amount = 3 * secondValue + 2 * firsValue + thirdValue;
-                                }
-                                else amount = 3 * firsValue + 2 * secondValue + thirdValue;
+                                amount = a * secondValue + b * firsValue + c * thirdValue;
                             }
+                            else amount = a * firsValue + b * secondValue + c * thirdValue;
                         }
                     }
                 }
             }
-            return toBeReturned + " "+ amount;
+            return amount;
         }
     }
 }
