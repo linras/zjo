@@ -1,4 +1,5 @@
-﻿using Refactoring.Models;
+﻿using System;
+using Refactoring.Models;
 using System.Collections.Generic;
 
 namespace Refactoring.Repository
@@ -33,13 +34,15 @@ namespace Refactoring.Repository
         } 
 
         public decimal CountHowMuchYouMustSpendMoneyToBeHappy( decimal firsValue, decimal secondValue, decimal thirdValue) {
-            decimal amount = CountDecimalValueWithTitle(1, 2, 3,firsValue, secondValue, thirdValue);
+            decimal amount = CountDecimalValue(1, 2, 3,firsValue, secondValue, thirdValue);
+
             return amount;
         }
 
         public decimal CountHowMuchYouMustSpendMoneyToBeFine(decimal firsValue, decimal secondValue,decimal thirdValue)
         {
-            decimal amount = CountDecimalValueWithTitle(3, 2, 1,firsValue, secondValue, thirdValue);
+            decimal amount = CountDecimalValue(3, 2, 1,firsValue, secondValue, thirdValue);
+
             return amount;
         }
 
@@ -48,48 +51,20 @@ namespace Refactoring.Repository
             string toBeReturned = "";
             string header = "";
             string extendedTitle = title + " " + subtitle;
-            header = extendedTitle + " " + author;
+            header = extendedTitle + " " + author + " ";
             toBeReturned += header;
             return toBeReturned;
         }
 
-        public decimal CountDecimalValueWithTitle(decimal a, decimal b, decimal c, decimal firsValue, decimal secondValue, decimal thirdValue)
+        public decimal CountDecimalValue(decimal a, decimal b, decimal c, decimal firsValue, decimal secondValue,
+            decimal thirdValue)
         {
             decimal amount = 0;
-            if (firsValue >= 0)
-            {
-                if (secondValue >= 0)
-                {
-                    if (thirdValue >= 0)
-                    {
-                        if (firsValue > secondValue && firsValue > thirdValue)
-                        {
-                            if (secondValue > thirdValue)
-                            {
-                                amount = a * thirdValue + b * secondValue + c * firsValue;
-                            }
-                            else amount = a * secondValue + b * thirdValue + c * firsValue;
+            if (firsValue < 0 && secondValue < 0 && thirdValue < 0) return amount;
+            decimal[] sorted = new[] { firsValue, secondValue, thirdValue };
+            Array.Sort(sorted);
 
-                        }
-                        if (secondValue > thirdValue && secondValue > firsValue)
-                        {
-                            if (thirdValue > firsValue)
-                            {
-                                amount = a * firsValue + b * thirdValue + c * secondValue;
-                            }
-                            else amount = a * thirdValue + b * firsValue + c * secondValue;
-                        }
-                        if (thirdValue > firsValue && thirdValue > secondValue)
-                        {
-                            if (firsValue > secondValue)
-                            {
-                                amount = a * secondValue + b * firsValue + c * thirdValue;
-                            }
-                            else amount = a * firsValue + b * secondValue + c * thirdValue;
-                        }
-                    }
-                }
-            }
+            amount = sorted[0] * a + sorted[1] * b + sorted[2] * c;
             return amount;
         }
     }

@@ -15,9 +15,12 @@ namespace Refactoring
             repo.GetDog(1);
 
             string s1 = repo.getTitle("title", "subtitle", "author") + 
-                        repo.CountHowMuchYouMustSpendMoneyToBeHappy((decimal)12.4, (decimal)134.5, (decimal)12.4);
+                        repo.CountHowMuchYouMustSpendMoneyToBeHappy((decimal)12.4, 
+                            (decimal)134.5, (decimal)12.4);
             string s2 = repo.getTitle("title", "subtitle", "author") + 
-                        repo.CountHowMuchYouMustSpendMoneyToBeFine((decimal)12.4, (decimal)134.5, (decimal)12.4);
+                        repo.CountHowMuchYouMustSpendMoneyToBeFine((decimal)12.4, 
+                            (decimal)134.5, (decimal)12.4);
+
             Console.WriteLine(s1 +" vs "+ s2);
             Console.ReadKey();
         }
