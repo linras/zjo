@@ -1,0 +1,6 @@
+,Maintainability Index,Cyclomatic Complexity,Depth of Inheritance,Class Coupling,Lines of Code
+On start,72,57,1,11,188
+After 1 smell,75,44,1,11,156
+2nd smell,75,45,1,11,155
+3rd smell,76,36,1,12,132
+Final state,80,35,1,12,118
